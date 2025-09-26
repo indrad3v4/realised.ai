@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#2196F3">
+    <title>Realised.ai - Own Property for €100</title>
+
+    <!-- PWA Meta Tags -->
+    <meta name="description" content="Own European real estate for €100. AI finds undervalued properties, buy micro-shares, get instant certificates.">
+    <meta name="keywords" content="real estate, investment, property, Europe, micro-investment, blockchain, Solana">
+    <link rel="manifest" href="/static/manifest.json">
+    <link rel="icon" type="image/png" sizes="192x192" href="/static/icon-192.png">
+    <link rel="apple-touch-icon" href="/static/icon-192.png">
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="/api">
+
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>🏠 Team-Realized</h1>
+                    <p class="tagline">Own property for €100. Escape rent slavery.</p>
+                </div>
+                <div class="stats">
+                    <span class="stat-item">50+ Cities</span>
+                    <span class="stat-item">€100 Min</span>
+                    <span class="stat-item">Instant Ownership</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main App -->
+        <main class="app-main">
+            <!-- Search Section -->
+            <section class="search-section">
+                <div class="search-card">
+                    <h2>Find Your Property Investment</h2>
+                    <p class="search-subtitle">AI scans 50+ European cities to find properties you can afford</p>
+
+                    <div class="search-form">
+                        <div class="input-group">
+                            <label for="budget">Monthly Budget</label>
+                            <div class="input-with-currency">
+                                <input type="number" id="budget" value="500" min="100" max="2000" step="50">
+                                <span class="currency">EUR</span>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="city">Preferred City (Optional)</label>
+                            <select id="city">
+                                <option value="">All Cities</option>
+                                <option value="Krakow">Krakow, Poland</option>
+                                <option value="Berlin">Berlin, Germany</option>
+                                <option value="Prague">Prague, Czech Republic</option>
+                                <option value="Barcelona">Barcelona, Spain</option>
+                                <option value="Warsaw">Warsaw, Poland</option>
+                                <option value="Vienna">Vienna, Austria</option>
+                                <option value="Budapest">Budapest, Hungary</option>
+                                <option value="Amsterdam">Amsterdam, Netherlands</option>
+                                <option value="Munich">Munich, Germany</option>
+                                <option value="Valencia">Valencia, Spain</option>
+                                <option value="Lisbon">Lisbon, Portugal</option>
+                            </select>
+                        </div>
+
+                        <button class="search-btn" onclick="findOpportunities()">
+                            <span class="btn-icon">🔍</span>
+                            Find Properties I Can Afford
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Loading Section -->
+            <section id="loading" class="loading-section" style="display: none;">
+                <div class="loading-card">
+                    <div class="spinner"></div>
+                    <h3>AI Analyzing Markets...</h3>
+                    <p class="loading-text">Scanning 50+ European cities for investment opportunities</p>
+                    <div class="loading-stats">
+                        <div class="loading-stat">
+                            <span class="stat-number" id="cities-scanned">0</span>
+                            <span class="stat-label">Cities Scanned</span>
+                        </div>
+                        <div class="loading-stat">
+                            <span class="stat-number" id="properties-analyzed">0</span>
+                            <span class="stat-label">Properties Analyzed</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section id="results" class="results-section">
+                <!-- Results will be populated by JavaScript -->
+            </section>
+
+            <!-- How It Works -->
+            <section class="how-it-works">
+                <div class="how-card">
+                    <h3>How Team-Realized Works</h3>
+                    <div class="steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>AI Finds Opportunities</h4>
+                                <p>Our AI scans 50+ European cities to find undervalued properties</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Buy €100-1000 Pieces</h4>
+                                <p>Purchase fractional ownership starting from just €100</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Get Instant Certificate</h4>
+                                <p>Receive blockchain ownership certificate in seconds</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h4>Build Portfolio</h4>
+                                <p>Diversify across multiple properties and cities</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <a href="#" class="nav-item active">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-label">Properties</span>
+            </a>
+            <a href="#portfolio" class="nav-item">
+                <span class="nav-icon">📊</span>
+                <span class="nav-label">Portfolio</span>
+            </a>
+            <a href="#analyze" class="nav-item">
+                <span class="nav-icon">🧠</span>
+                <span class="nav-label">AI Analysis</span>
+            </a>
+            <a href="#profile" class="nav-item">
+                <span class="nav-icon">👤</span>
+                <span class="nav-label">Profile</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- Purchase Modal -->
+    <div id="purchase-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Confirm Purchase</h3>
+                <button class="close-btn" onclick="closePurchaseModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="purchase-details" id="purchase-details">
+                    <!-- Purchase details will be populated -->
+                </div>
+                <div class="purchase-actions">
+                    <button class="btn btn-secondary" onclick="closePurchaseModal()">Cancel</button>
+                    <button class="btn btn-primary" onclick="confirmPurchase()">
+                        <span class="btn-icon">💰</span>
+                        Confirm Purchase
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="modal" style="display: none;">
+        <div class="modal-content success-content">
+            <div class="success-icon">🎉</div>
+            <h3>Purchase Successful!</h3>
+            <div class="success-details" id="success-details">
+                <!-- Success details will be populated -->
+            </div>
+            <button class="btn btn-primary" onclick="closeSuccessModal()">
+                View My Portfolio
+            </button>
+        </div>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
